@@ -23,7 +23,7 @@ void Start()
 {
     cloudPos = Vector2(-320, 100);
     cannonPos = Vector2(-304, -150);
-    targetRect = Rect(280, -140, 40, 40);
+   // targetRect = Rect(280, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
 }
@@ -38,18 +38,18 @@ void Update()
 
     // 弾の移動
     if (bulletPos.x > -999) {
-        bulletPos.x += 1000 * Time::deltaTime;
+        bulletPos.x += 100 * Time::deltaTime;
 
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
             score += 1;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
-            
-            if(bulletPos.x > 320){
-                bulletPos.x = -500;
-            }
         }
+            else if(bulletPos.x > 300){//弾のリロード　hw16a166 藤原　渉
+                bulletPos.x = -999;
+            }
+        
     }
 
     // 背景の描画
@@ -58,11 +58,7 @@ void Update()
 
     // 雲の描画
     DrawImage("cloud1.png", cloudPos);
-    cloudPos.x += 3;
-    if(cloudPos.x > 320){ //弾のリロード　hw16a166 藤原　渉
-        cloudPos.x = -500;
-    }
-
+    
 
     // 弾の描画
     if (bulletPos.x > -999) {
