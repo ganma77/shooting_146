@@ -26,7 +26,7 @@ void Start()
     targetRect = Rect(280, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
-    PlayBGM("bgm_maoudamashii_8bit07.mp3");
+    PlayBGM("bgm_maoudamashii_8bit07.mp3");//BGMを再生　HW16A184松本丈一郎
 }
 
 // 1/60秒ごとに呼ばれる関数です。モデルの更新と画面の描画を行います。
@@ -45,7 +45,7 @@ void Update()
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
-            score += 100;         // スコアの加算
+            score += 100;         // スコアの加算を３桁に変更　HW16A184松本丈一郎
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
             PlaySound("se_maoudamashii_system27.mp3");//SEを再生する（実装：HW16A146　長杉星弥）
         }
@@ -68,21 +68,15 @@ void Update()
     }
 
     // 砲台の描画
-    FillRect(Rect(cannonPos.x-16, -140, 20, 100), Color::blue);
+    FillRect(Rect(cannonPos.x-16, -140, 20, 100), Color::blue);//砲台の位置を変更　HW16A166　藤原　渉
     DrawImage("cannon.png", cannonPos);
 
     // ターゲットの描画
     FillRect(targetRect, Color::red);
 
     // スコアの描画
-<<<<<<< HEAD
     SetFont("nicoca_v1.ttf", 70.0f);//スコアのサイズを大きくする（実装：HW16A146　長杉星弥）
     DrawText(FormatString("%02d", score), Vector2(-319, 150), Color::black);
     DrawText(FormatString("%02d", score), Vector2(-320, 151), Color::white);
-=======
-    SetFont("nicoca_v1.ttf", 20.0f);
-    DrawText(FormatString("%05d", score), Vector2(-319, 199), Color::black);
-    DrawText(FormatString("%05d", score), Vector2(-320, 200), Color::white);
->>>>>>> d99f72be585b5ce5ddd0685974a446664996b4d9
 }
 
