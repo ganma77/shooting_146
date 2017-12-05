@@ -40,14 +40,21 @@ void Update()
 
     // 弾の移動
     if (bulletPos.x > -999) {
-        bulletPos.x += 10 * Time::deltaTime;
+        bulletPos.x += 1000 * Time::deltaTime;
 
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
             score += 100;         // スコアの加算を３桁に変更　HW16A184松本丈一郎
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
+<<<<<<< HEAD
             PlaySound("se_maoudamashii_system27.mp3");//SEを再生する（実装：HW16A146　長杉星弥）
+=======
+            
+            if(bulletPos.x > 320){
+                bulletPos.x = -500;
+            }
+>>>>>>> 4c19797d6e7dd3d5a078b2d58c649d7b292ec413
         }
     }
 
@@ -57,10 +64,18 @@ void Update()
 
     // 雲の描画
     DrawImage("cloud1.png", cloudPos);
+<<<<<<< HEAD
     cloudPos.x += 3;          //雲を動かす（実装：HW16A146　長杉星弥）
     if(cloudPos.x >320){
         cloudPos.x = -500;
     }
+=======
+    cloudPos.x += 3;
+    if(cloudPos.x > 320){ //弾のリロード　hw16a166 藤原　渉
+        cloudPos.x = -500;
+    }
+
+>>>>>>> 4c19797d6e7dd3d5a078b2d58c649d7b292ec413
 
     // 弾の描画
     if (bulletPos.x > -999) {
